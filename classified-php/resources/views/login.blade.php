@@ -4,9 +4,9 @@
     <title>RiyaPola.com</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="description" content="Lanka Fun, lanka ads classifieds platform in Sri Lanka, offering a wide range of services including personal ads, spa and massage services, and a classified section where you can find great deals and bargains on items such as apartments, cars, mobiles, and more. You can find full body massage services in popular cities such as Colombo, Dehiwala, and Rajagiriya, with real pictures to ensure an accurate representation of the spa or massage property. With a one hour service option, you can enjoy a relaxing and rejuvenating experience from the comfort of your own home. In addition to traditional classifieds, Lanka Ads also offers cam show services featuring real Sri Lankan models.">
+    <meta name="description" content="xxxxxxxxxx">
     <meta name="robots" content="noindex">
-    <meta name="title" content="Lanka Fun Ads - Beautiful Girls - Personal Message SpaAds">
+    <meta name="title" content="xxxxxxxx">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -16,10 +16,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     
  
-    <title>Login</title>
+    <title>Riyapola Login</title>
 </head>
 <body>
     <div class="container mt-5" style="max-width: 500px;">
+      <div class="card px-4 py-3">
         <form id="form" class="form-signin" accept="#">
             <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Login</h1>
            
@@ -34,21 +35,12 @@
             <input type="otp" id="inputOtp" class="form-control mb-2" placeholder="OTP" required="">
             <button class="btn btn-success btn-block mb-2" type="button" id="verifyotp"><i class="fas fa-sign-in-alt"></i> VERIFY OTP</button>        
          
-            </form>
-
-          
-            
-          
-            <br>
-
-           <div class="alert alert-danger">
-             <strong>ශ්‍රීලංකාවේ දුරකථන අංක පමණක් වැඩ කරනු ඇත</strong> 
-           </div>
+</form>
      
            <div class="alert alert-warning">
-             <strong>දෝශයක් ආවොත් පිට්‍රව Refresh කර නැවත උත්සාහ කරන්න</strong> 
+             <strong>Refresh the page if you get any errors. </strong> 
            </div>
-            
+          </div>
     </div>
 
   
@@ -144,7 +136,7 @@ loginphone.onclick = function() {
         // Invalid phone number
         message.innerHTML = `Invalid phone number. Please enter a valid Sri Lankan phone number.`;
         message.classList.remove("alert", "alert-success");
-        message.classList.add("walert", "alert-danger");
+        message.classList.add("alert", "alert-danger");
         message.hidden = false;
         return;
     }
@@ -182,7 +174,7 @@ loginphone.onclick = function() {
 
         window.confirmationResult=response;
     }).catch(function(error){
-        console.log(error);
+        //console.log(error);
 
         // Enable input fields and buttons
         phoneinput.disabled = false;
@@ -192,7 +184,7 @@ loginphone.onclick = function() {
 
         message.innerHTML = `Something wrong with your phone number or captcha. Please refresh the page and try again.`;
         message.classList.remove("alert", "alert-success");
-        message.classList.add("walert", "alert-danger");
+        message.classList.add("alert", "alert-danger");
         message.hidden = false;
 
         //reset the captcha
@@ -224,10 +216,10 @@ loginphone.onclick = function() {
             }
        })
        .catch(function(error){
-           console.log(error);
-           message.innerHTML = `OTP Code error. Please try again`;
+          // console.log(error);
+           message.innerHTML = `OTP Code error. Please enter again`;
              message.classList.remove("alert", "alert-success");
-             message.classList.add("walert", "alert-danger");
+             message.classList.add("alert", "alert-danger");
 			 message.hidden = false;
 
        })
