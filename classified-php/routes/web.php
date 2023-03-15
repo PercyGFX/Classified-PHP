@@ -21,8 +21,8 @@ Route::get('/', function () {
 
 // login routes
 
-Route::get('/login', [UserController::class, 'login']);
+Route::get('/mobile-login', [UserController::class, 'login']);
 
 Route::post('/login', [UserController::class, 'userlogin']);
 
-Route::get('/register', [UserController::class, 'register']);
+

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class UserController extends Controller
 {
@@ -18,8 +19,20 @@ class UserController extends Controller
 
   function userlogin(Request $req){
 
-   echo $req["email"] . "<br>";
-   echo md5($req["password"]);
+    //login validation
+  //$req->validate([
+ //   'phone' => 'required|regex:/[0-9]{10}/|digits:10',
+  //]);
+
+  
+  $phone = $req->input('phone');
+  $token = $req->input('token');
+
+
+ echo $phone . "<br>";
+ echo $token . "<br>";
+
+
 
   }
 
