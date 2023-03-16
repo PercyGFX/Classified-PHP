@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\vehicleads;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,5 +30,10 @@ Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/login', [UserController::class, 'userlogin']);
 
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+
+
+//vehicle ads routes
+
+Route::get('/sellvehicle', [vehicleads::class, 'sellvehicle'])->name('sellvehicle');
 
 
