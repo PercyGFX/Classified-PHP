@@ -86,22 +86,14 @@ if ($result) {
     return redirect('/login')->with('error', 'Phone number not found or doesn\'t match');
 }
 
-
-
-
-  
-
-  
-
-
-
   }
 
-  function register()
-  {
-    return view('register');
-  }
 
+  function logout()
+{
+  session::pull('phone_number');
+  return redirect('/');
+}
 
 
 

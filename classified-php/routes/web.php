@@ -14,15 +14,19 @@ use App\Http\Controllers\UserController;
 |
 */
 
+//index page
+
 Route::get('/', function () {
     return view('index');
 });
 
 
-// login routes
+// SMS OTP login routes
 
-Route::get('/login', [UserController::class, 'login']);
+Route::get('/login', [UserController::class, 'login'])->name('login');
 
 Route::post('/login', [UserController::class, 'userlogin']);
+
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
 
