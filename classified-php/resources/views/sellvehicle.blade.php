@@ -112,6 +112,8 @@
 
         <div class="mb-4">
             @error('make')
+
+           
             <div class="mt-2 text-sm text-red-600">{{ $message }}</div>
         @enderror
             <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
