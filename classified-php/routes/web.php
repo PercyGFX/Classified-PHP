@@ -36,4 +36,7 @@ Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
 Route::get('/sellvehicle', [vehicleads::class, 'sellvehicle'])->name('sellvehicle');
 
+Route::post('/sellvehicle', [vehicleads::class, 'savesellvehicle']);
+
+
 
