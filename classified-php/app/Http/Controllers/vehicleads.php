@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\vehicle_ad;
 use App\Models\user;
-
+use App\Models\image;
 use Session;
+use Intervention\Image\Facades\Image as InterventionImage;
+	
 
 class vehicleads extends Controller
 {
@@ -18,6 +20,7 @@ class vehicleads extends Controller
 
     function savesellvehicle(Request $req){
 
+        //validate fields
         $req->validate([
            
             'type' => 'required',
@@ -38,6 +41,11 @@ class vehicleads extends Controller
             
         ]);
 
+
+
+
+
+//save fields to the database
         
         $user_id = user::where('phone_number', session('phone_number'))->first()->id;
 
@@ -46,7 +54,6 @@ class vehicleads extends Controller
         $data = array(
             'vehicle_type' => $req->input('type'),
             'user_id' => $user_id,//session('user_id'),
-            'image' => 'image',	  // chnage this to image
             'vehicle_condition' => $req->input('condition'),
             'vehicle_make' => $req->input('make'),
             'vehicle_model' => $req->input('model'),
@@ -62,10 +69,42 @@ class vehicleads extends Controller
             'location' => $req->input('location'),
         );
 
-        vehicle_ad::create($data);
+        $vehicleAd = vehicle_ad::create($data);
+        $vehicleAdId = $vehicleAd->id;
+        $phone_number = session('phone_number');
 
-        echo "<pre>";
-        echo print_r($data);
-        echo "</pre>";
+//save images
+
+$file = $req->file('mainimage');
+
+// Create an instance of the image from the uploaded file
+$image = InterventionImage::make($file);
+
+// Reduce the quality of the image to 75% and save it in JPEG format
+$image->encode('jpg', 75);
+
+$fileName = $phone_number . '_' . hexdec(uniqid()) . '.' . $file->getClientOriginalExtension();
+
+// Save the processed image to disk with the generated file name
+$image->save('uploads/' . $fileName);
+
+$image = new Image;
+
+// Set the image file name and other properties
+$image->image = $fileName;
+$image->table_id = 0;  //vehiclesale table id is 0
+$image->is_mainimage = 1;
+$image->main_id = $vehicleAdId;
+
+// Save the Image instance to the database
+$image->save();
+
+return redirect('viewvehicle?id=' . $vehicleAdId);
+
+        
+
+
+
+       
     }
 }

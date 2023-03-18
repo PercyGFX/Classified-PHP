@@ -27,7 +27,6 @@ return new class extends Migration
             $table->string('engine_capacity');
             $table->string('mileage');
             $table->string('description');
-            $table->string('image');
             $table->string('name');
             $table->string('phone_number');
             $table->string('location');
