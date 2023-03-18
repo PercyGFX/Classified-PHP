@@ -38,5 +38,7 @@ Route::get('/sellvehicle', [vehicleads::class, 'sellvehicle'])->name('sellvehicl
 
 Route::post('/sellvehicle', [vehicleads::class, 'savesellvehicle']);
 
+Route::get('/viewvehicle/{id}', [vehicleads::class, 'viewvehicle']);
+
 
 

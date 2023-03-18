@@ -9,4 +9,8 @@ class vehicle_ad extends Model
 {
     use HasFactory;
     protected $guarded = []; 
+
+    public function image () {
+        return $this->hasMany(image::class, 'main_id', 'id');
+    }
 }

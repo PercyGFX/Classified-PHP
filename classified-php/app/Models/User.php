@@ -9,4 +9,12 @@ class user extends Model
 {
     use HasFactory;
     public $timestamps = true;
+
+    public function vehicleads() {
+
+        return $this->hasMany(vehicle_ad::class, 'user_id', 'id');
+    }
 }
+
+
+
