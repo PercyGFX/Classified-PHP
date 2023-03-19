@@ -6,9 +6,22 @@ use Illuminate\Http\Request;
 use DB;
 use App\Models\user;
 use Session;
+use App\Models\vehicle_ad;
 
 class UserController extends Controller
 {
+
+
+
+  //index view
+
+  function index(){
+
+    $vehicle_ad = vehicle_ad::all();
+   
+
+    return view('index' , ["vehicle_ad" => $vehicle_ad]);
+  }
     
 // login view
   function login()

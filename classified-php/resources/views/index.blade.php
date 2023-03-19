@@ -46,41 +46,33 @@
 
 
 
+@forEach($vehicle_ad as $v_ad)
+
 
   
+<a href="viewvehicle/{{$v_ad->id}}" >
     <div class="max-w-4xl mx-auto bg-white shadow-md my-2 px-2 py-4 sm:px-6 md:px-8">
       <div class="flex items-start md:flex">
         <div class="">
-          <img src="https://via.placeholder.com/200x200" alt="Placeholder image" class="h-40 w-40 md:h-48 md:w-48">
+          <img src="/uploads/{{$v_ad['image'][0]['image']}}" alt="Placeholder image" class="h-40 w-40 md:h-48 md:w-48">
         </div>
         <div class="flex-grow p-4 md:w-2/3">
-          <h2 class="text-xl font-semibold text-gray-800">Example Title</h2>
-          <p class="text-gray-600">Description of the car</p>
+          <h2 class="text-xl font-semibold text-gray-800">{{$v_ad->vehicle_make}} {{$v_ad->vehicle_model}} For Sale in {{$v_ad->location}}  </h2>  
+          <p class="text-gray-600">{{$v_ad->description}}</p>
           <div class="mt-4">
-            <p class="text-gray-700 inline-block mr-4">Price</p>
-            <p class="text-gray-700 inline-block mr-4">Location</p>
+            <p class="text-gray-700 inline-block mr-4">{{$v_ad->price}}</p>
+            <p class="text-gray-700 inline-block mr-4">{{$v_ad->location}}</p>
             <p class="text-gray-700 inline-block">Date</p>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="max-w-4xl mx-auto bg-white shadow-md my-2 px-2 py-4 sm:px-6 md:px-8">
-      <div class="flex items-start md:flex">
-        <div class="">
-          <img src="https://via.placeholder.com/200x200" alt="Placeholder image" class="h-40 w-40 md:h-48 md:w-48">
-        </div>
-        <div class="flex-grow p-4 md:w-2/3">
-          <h2 class="text-xl font-semibold text-gray-800">Example Title</h2>
-          <p class="text-gray-600">Description of the car</p>
-          <div class="mt-4">
-            <p class="text-gray-700 inline-block mr-4">Price</p>
-            <p class="text-gray-700 inline-block mr-4">Location</p>
-            <p class="text-gray-700 inline-block">Date</p>
-          </div>
-        </div>
-      </div>
-    </div>
+  </a>
+
+  @endforeach
+
+   
 
 
     

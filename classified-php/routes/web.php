@@ -18,9 +18,7 @@ use App\Http\Controllers\vehicleads;
 
 //index page
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [UserController::class, 'index']);
 
 
 // SMS OTP login routes

@@ -367,7 +367,7 @@
                           <img src="{{ asset('uploads/'.$image->image) }}" alt="image 1 of 5" data-full-alt="Succulents 1">
                         </button>
                       </div>
-            
+            <!--
                       <div class="thumbnail splide__slide">
                         <button class="thumbnail-button">
                           <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3609497/erol-ahmed-500x500.jpg" alt="image 2 of 5" data-full-alt="Succulents 2">
@@ -391,6 +391,8 @@
                           <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3609497/annie-spratt-500x500.jpg" alt="image 5 of 5" data-full-alt="Succulents 5">
                         </button>
                       </div>
+                    -->
+
                     </div>
                   </div>
                 </div>
