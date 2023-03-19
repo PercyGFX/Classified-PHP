@@ -215,6 +215,82 @@
     }
   
   </style>
+
+<script>
+
+    
+  var currentImage;
+  var splide;
+  var previousButton, nextButton;
+  var thumbnails, thumbnailButtons;
+  
+  window.addEventListener('DOMContentLoaded', function(e) {
+    currentImage = document.querySelector('.current-image');
+    previousButton = document.querySelector('.carousel .previous-button');
+    nextButton = document.querySelector('.carousel .next-button');
+    thumbnails = document.querySelectorAll('.carousel .thumbnail');
+    thumbnailButtons = document.querySelectorAll('.carousel .thumbnail-button');
+    
+    thumbnailButtons.forEach(function(thumbnailButton) {
+      thumbnailButton.addEventListener('click', function(e) {
+        activateThumbnail(thumbnailButton);
+      });
+    });
+  
+    splide = new Splide('.splide', {
+      gap: '1px',
+      padding: {
+        left: '25px',
+        right: '25px'
+      },
+      arrows: false,
+      perPage: 3,
+      pagination: false,
+      keyboard: false,  // Splide listens to key events at the document level and moves ALL carousels when arrow keys are used. Also, keyboard controls are not expected by real users.
+      slideFocus: false,  // removes tabindex="0" from each slide wrapper, since we only want our links inside each slide to receive focus. 
+    }).mount();
+    
+    // To prevent animation issues, let's make every slide visible before a transition happens. Splide will then automatically remove the `.is-visible` class from non-visible slides once the transition is finished.
+    splide.on('move', function() {
+      var slides = document.querySelectorAll('.splide .splide__slide');
+  
+      slides.forEach(function(slide) {
+        slide.classList.add('is-visible');
+      });
+    });
+    
+    // Go to the previous slide when the Previous button is activated
+    previousButton.addEventListener('click', function(e) {
+      splide.go('<');
+    });
+    
+    // Go to the next slide when the Next button is activated
+    nextButton.addEventListener('click', function(e) {
+      splide.go('>');
+    });
+  });
+  
+  
+  /**
+    Update the large current image when a thumbnail button is activated.
+  */
+  function activateThumbnail(thumbnailButton) {
+    // Swap the current image based to match the thumbnail
+    // - If you'd like to use separate images, like higher-res versions, consider using the index to pick an appropriate src string from an array, or storing the URI of the higher-res image in a custom data attribute on the thumbnail.
+    var newImageSrc = thumbnailButton.querySelector('img').getAttribute('src');
+    var newImageAlt = thumbnailButton.querySelector('img').getAttribute('data-full-alt');
+    currentImage.querySelector('img').setAttribute('src', newImageSrc);
+    currentImage.querySelector('img').setAttribute('alt', newImageAlt);
+    
+    // Remove aria-current from any previously-activated thumbnail
+    thumbnailButtons.forEach(function(button) {
+      button.removeAttribute('aria-current');
+    });
+    
+    // Indicate to screen readers which thumbnail is selected using aria-current
+    thumbnailButton.setAttribute('aria-current', true);
+  }
+  </script>
   
   <!-- Link to the file hosted on your server, -->
  
@@ -257,7 +333,7 @@
 
 
     <div class="mx-auto max-w-4x2 p-4">
-        <h1 class="text-3xl font-bold mb-4">{{$vehicle->vehicle_make}} {{$vehicle->vehicle_model}}</h1>
+        <h2 class="text-2xl font-bold mb-4 text-gray-600">{{$vehicle->vehicle_make}} {{$vehicle->vehicle_model}} For Sale in {{$vehicle->location}}</h2>
         <div class="flex flex-col md:flex-row gap-4">
           <div class="rounded-md shadow-md flex-none w-1/5 md:w-1/4">
 
@@ -338,21 +414,21 @@
             <div class="grid grid-cols-2 gap-4 mb-4">
               <div class="flex flex-col bg-gray-100 rounded-md p-5 shadow-md">
                 <p class="font-bold">Brand:</p>
-                <p>Hyundai</p>
+                <p>{{$vehicle->vehicle_make}}</p>
                 <p class="font-bold">Year:</p>
-                <p>2004</p>
+                <p>{{$vehicle->vehicle_year}}</p>
                 <p class="font-bold">Mileage:</p>
-                <p>157,000 km</p>
+                <p>{{$vehicle->Mileage}}</p>
                 <p class="font-bold">Fuel Type:</p>
-                <p>Petrol</p>
+                <p>{{$vehicle->fuel_type}}</p>
               </div>
               <div class="flex flex-col bg-white rounded-md p-5 shadow-md">
                 <p class="font-bold">Model:</p>
-                <p>Accent</p>
+                <p>{{$vehicle->vehicle_model}}</p>
                 <p class="font-bold">Condition:</p>
-                <p>Used</p>
+                <p>{{$vehicle->vehicle_condition}}</p>
                 <p class="font-bold">Transmission:</p>
-                <p>Manual</p>
+                <p>{{$vehicle->transmission}}</p>
               </div>
             </div>
             <div class="bg-gray-100 rounded-md p-5 shadow-md mb-4">
@@ -410,80 +486,6 @@
 
 </div>
 
-<script>
 
-    
-  var currentImage;
-  var splide;
-  var previousButton, nextButton;
-  var thumbnails, thumbnailButtons;
-  
-  window.addEventListener('DOMContentLoaded', function(e) {
-    currentImage = document.querySelector('.current-image');
-    previousButton = document.querySelector('.carousel .previous-button');
-    nextButton = document.querySelector('.carousel .next-button');
-    thumbnails = document.querySelectorAll('.carousel .thumbnail');
-    thumbnailButtons = document.querySelectorAll('.carousel .thumbnail-button');
-    
-    thumbnailButtons.forEach(function(thumbnailButton) {
-      thumbnailButton.addEventListener('click', function(e) {
-        activateThumbnail(thumbnailButton);
-      });
-    });
-  
-    splide = new Splide('.splide', {
-      gap: '1px',
-      padding: {
-        left: '25px',
-        right: '25px'
-      },
-      arrows: false,
-      perPage: 3,
-      pagination: false,
-      keyboard: false,  // Splide listens to key events at the document level and moves ALL carousels when arrow keys are used. Also, keyboard controls are not expected by real users.
-      slideFocus: false,  // removes tabindex="0" from each slide wrapper, since we only want our links inside each slide to receive focus. 
-    }).mount();
-    
-    // To prevent animation issues, let's make every slide visible before a transition happens. Splide will then automatically remove the `.is-visible` class from non-visible slides once the transition is finished.
-    splide.on('move', function() {
-      var slides = document.querySelectorAll('.splide .splide__slide');
-  
-      slides.forEach(function(slide) {
-        slide.classList.add('is-visible');
-      });
-    });
-    
-    // Go to the previous slide when the Previous button is activated
-    previousButton.addEventListener('click', function(e) {
-      splide.go('<');
-    });
-    
-    // Go to the next slide when the Next button is activated
-    nextButton.addEventListener('click', function(e) {
-      splide.go('>');
-    });
-  });
-  
-  
-  /**
-    Update the large current image when a thumbnail button is activated.
-  */
-  function activateThumbnail(thumbnailButton) {
-    // Swap the current image based to match the thumbnail
-    // - If you'd like to use separate images, like higher-res versions, consider using the index to pick an appropriate src string from an array, or storing the URI of the higher-res image in a custom data attribute on the thumbnail.
-    var newImageSrc = thumbnailButton.querySelector('img').getAttribute('src');
-    var newImageAlt = thumbnailButton.querySelector('img').getAttribute('data-full-alt');
-    currentImage.querySelector('img').setAttribute('src', newImageSrc);
-    currentImage.querySelector('img').setAttribute('alt', newImageAlt);
-    
-    // Remove aria-current from any previously-activated thumbnail
-    thumbnailButtons.forEach(function(button) {
-      button.removeAttribute('aria-current');
-    });
-    
-    // Indicate to screen readers which thumbnail is selected using aria-current
-    thumbnailButton.setAttribute('aria-current', true);
-  }
-  </script>
 </body>
 </html>
