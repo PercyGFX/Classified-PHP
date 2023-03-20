@@ -69,8 +69,7 @@ class vehicleads extends Controller
             'location' => $req->input('location'),
         );
 
-        $vehicleAd = vehicle_ad::create($data);
-        $vehicleAdId = $vehicleAd->id;
+     
         $phone_number = session('phone_number');
 
 //save images
@@ -89,6 +88,10 @@ $image->resize(1100, null, function ($constraint) {
     $constraint->aspectRatio();
 });
 
+$image->insert ('uploads/watermark.png', 'bottom-right', 10, 10);
+
+echo
+
 
 
 $phone_number = substr($phone_number, 1);
@@ -99,14 +102,21 @@ $image->save('uploads/' . $fileName);
 
 $image = new Image;
 
+
+//save vehicle ad
+$vehicleAd = vehicle_ad::create($data);
+$vehicleAdId = $vehicleAd->id;
 // Set the image file name and other properties
-$image->image = $fileName;
-$image->table_id = 0;  //vehiclesale table id is 0
-$image->is_mainimage = 1;
-$image->main_id = $vehicleAdId;
+
+image::insert([
+    'image' => $fileName,
+    'table_id' => 0,
+    'is_mainimage' => 1,
+    'main_id' => $vehicleAdId,
+]);
 
 // Save the Image instance to the database
-$image->save();
+
 
 return redirect('viewvehicle/' . $vehicleAdId);
 

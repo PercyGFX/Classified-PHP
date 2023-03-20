@@ -72,6 +72,10 @@
 
   @endforeach
 
+  {{ $vehicle_ad->links() }}
+
+  {{ $vehicle_ad->links('pagination::default')->paginator->currentPage() }}
+
    
 
 

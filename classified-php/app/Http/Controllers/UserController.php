@@ -17,7 +17,7 @@ class UserController extends Controller
 
   function index(){
 
-    $vehicle_ad = vehicle_ad::all();
+    $vehicle_ad = vehicle_ad::OrderBy('id','desc')->paginate(10);
    
 
     return view('index' , ["vehicle_ad" => $vehicle_ad]);
