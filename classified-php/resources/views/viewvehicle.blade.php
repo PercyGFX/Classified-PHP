@@ -333,9 +333,9 @@
 
 
     <div class="mx-auto max-w-4x2 p-4">
-        <h2 class="text-2xl font-bold mb-4 text-gray-600">{{$vehicle->vehicle_make}} {{$vehicle->vehicle_model}} For Sale in {{$vehicle->location}}</h2>
+        <h2 class="ml-3 text-2xl font-bold mb-4 text-gray-600">{{$vehicle->vehicle_make}} {{$vehicle->vehicle_model}} For Sale in {{$vehicle->location}}</h2>
         <div class="flex flex-col md:flex-row gap-4">
-          <div class="rounded-md shadow-md flex-none w-1/5 md:w-1/4">
+          <div class=" rounded-md shadow-md flex-none w-1/5 md:w-1/4">
 
 
             <section class="py-3 px-3 carousel" aria-label="carousel">
@@ -414,13 +414,13 @@
           </div>
           <div class="flex-grow md:w-2/3">
             <div class="grid grid-cols-2 gap-4 mb-4">
-              <div class="flex flex-col bg-gray-100 rounded-md p-5 shadow-md">
+              <div class="flex flex-col bg-gray-50 rounded-md p-5 shadow-md">
                 <p class="font-bold">Brand:</p>
                 <p>{{$vehicle->vehicle_make}}</p>
                 <p class="font-bold">Year:</p>
                 <p>{{$vehicle->vehicle_year}}</p>
                 <p class="font-bold">Mileage:</p>
-                <p>{{$vehicle->Mileage}}</p>
+                <p>{{$vehicle->mileage}}</p>
                 <p class="font-bold">Fuel Type:</p>
                 <p>{{$vehicle->fuel_type}}</p>
               </div>
@@ -433,7 +433,7 @@
                 <p>{{$vehicle->transmission}}</p>
               </div>
             </div>
-            <div class="bg-gray-100 rounded-md p-5 shadow-md mb-4">
+            <div class="bg-gray-50 rounded-md p-5 shadow-md mb-4">
 
               <div class="mb-4">                              
               <a href="tel:{{$vehicle->phone_number}}" class="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-green-700 dark:focus:ring-blue-800 " >{{$vehicle->phone_number}}</a>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\vehicleads;
+use App\Http\Controllers\apicontroller;
 
 
 /*
@@ -37,6 +38,16 @@ Route::get('/sellvehicle', [vehicleads::class, 'sellvehicle'])->name('sellvehicl
 Route::post('/sellvehicle', [vehicleads::class, 'savesellvehicle']);
 
 Route::get('/viewvehicle/{id}', [vehicleads::class, 'viewvehicle']);
+
+
+//vehicle ads api routes
+
+Route::get('/api/v1/getallvehicles/', [apicontroller::class, 'getallvehicles']);
+Route::post('/api/v1/postvehicle/', [apicontroller::class, 'postvehicle']);
+Route::get('/api/v1/getCsrfToken/', [apicontroller::class, 'getCsrfToken']);
+
+
+
 
 
 
